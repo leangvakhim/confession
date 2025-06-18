@@ -35,6 +35,11 @@ function App() {
                     const randomLeft = Math.floor(Math.random() * (window.innerWidth - 100));
                     setNoButtonPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
                   }}
+                  onTouchStart={() => {
+                    const randomTop = Math.floor(Math.random() * (window.innerHeight - 50));
+                    const randomLeft = Math.floor(Math.random() * (window.innerWidth - 100));
+                    setNoButtonPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
+                  }}
                 >
                   No
                 </button>
