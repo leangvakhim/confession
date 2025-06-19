@@ -7,7 +7,8 @@ import yes from "./assets/yes.gif";
 
 function App() {
   const [showYes, setShowYes] = useState(false);
-  const [noButtonPosition, setNoButtonPosition] = useState({ top: '73%', left: '55%' });
+  const [noButtonPosition, setNoButtonPosition] = useState({ top: '0px', left: '0px' });
+  const [noButtonActivated, setNoButtonActivated] = useState(false);
 
   return (
     <>
@@ -24,18 +25,26 @@ function App() {
                   Yes
                 </button>
                 <button
-                  className='py-2 px-6 border bg-red-500 cursor-pointer absolute transition-all duration-300'
-                  style={{
+                  className={`py-2 px-6 border bg-red-500 cursor-pointer ${noButtonActivated ? 'absolute transition-all duration-300' : ''}`}
+                  style={noButtonActivated ? {
                     position: 'absolute',
                     top: noButtonPosition.top,
                     left: noButtonPosition.left
-                  }}
+                  } : {}}
                   onMouseEnter={() => {
+                    if (!noButtonActivated) {
+                      setNoButtonActivated(true);
+                      return;
+                    }
                     const randomTop = Math.floor(Math.random() * (window.innerHeight - 50));
                     const randomLeft = Math.floor(Math.random() * (window.innerWidth - 100));
                     setNoButtonPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
                   }}
                   onTouchStart={() => {
+                    if (!noButtonActivated) {
+                      setNoButtonActivated(true);
+                      return;
+                    }
                     const randomTop = Math.floor(Math.random() * (window.innerHeight - 50));
                     const randomLeft = Math.floor(Math.random() * (window.innerWidth - 100));
                     setNoButtonPosition({ top: `${randomTop}px`, left: `${randomLeft}px` });
